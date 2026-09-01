@@ -2,9 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd  # NOVA BIBLIOTECA: Importando o pandas para ler o CSV
 
-# ====================================================================
 # 1. LEITURA AUTOMÁTICA DO ARQUIVO CSV
-# ====================================================================
 # Substitua 'dados_tracker.csv' pelo nome exato do seu arquivo.
 # Certifique-se de que o arquivo Python e o CSV estão na mesma pasta.
 nome_do_arquivo = 'dados_tracker.csv'
