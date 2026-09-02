@@ -14,7 +14,7 @@ u_a_exp = np.array([0.04, 0.04, 0.04, 0.04, 0.04]) # IMPORTANTE: Substitua pelas
 M = 0.500     # Massa total do sistema (m1 + m2) em kg
 u_M = 0.001   # Incerteza da balança para a massa total em kg
 
-R = 0.025     # Raio da polia em metros
+R = 0.005     # Raio da polia em metros
 u_R = 0.0005  # Incerteza do instrumento de medida do raio em metros
 
 # Gravidade exata de Campinas

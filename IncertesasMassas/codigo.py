@@ -35,7 +35,7 @@ def formatar_resultado(valor, incerteza):
 # ====================================================================
 # 2. PARÂMETROS DA BALANÇA (Ajuste conforme o seu manual)
 # ====================================================================
-resolucao = 0.001  # Exemplo: 1 grama
+resolucao = 0.1  
 
 def calcular_incerteza(massa):
     """Calcula a incerteza de uma medição na balança."""
