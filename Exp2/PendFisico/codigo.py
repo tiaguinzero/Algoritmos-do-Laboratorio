@@ -39,7 +39,6 @@ theta_max = np.max(np.abs(theta_exp[:15]))  # Primeiro pico inicial
 # 2. Determinação do Período (T) e Frequência Angular (omega):
 picos_idx = []
 for i in range(1, len(theta_exp) - 1):
-    # Corrigido: Uso dos operadores de comparação &gt; e &gt;= sem caracteres HTML
     if theta_exp[i] > theta_exp[i-1] and theta_exp[i] > theta_exp[i+1] and theta_exp[i] > 0.5 * theta_max:
         picos_idx.append(i)
 
@@ -52,13 +51,13 @@ else:
 omega_exp = (2 * np.pi) / T_exp  # Frequência angular (rad/s)
 
 # 3. Constante de Fase (phi0)
-phi0 = 0.0 
+#phi0 = 0.0 
 
 # ==============================================================================
 # 4. GERAÇÃO DA CURVA TEÓRICA IDEAL: theta(t) = theta_max * cos(omega * t + phi0)
 # ==============================================================================
 t_curva = np.linspace(min(t_exp), max(t_exp), 500)
-theta_teorico = theta_max * np.cos(omega_exp * t_curva + phi0)
+theta_teorico = theta_max * np.cos(omega_exp * t_curva)
 
 # ==============================================================================
 # 5. CONSTRUÇÃO DO GRÁFICO 3 (theta vs t)
