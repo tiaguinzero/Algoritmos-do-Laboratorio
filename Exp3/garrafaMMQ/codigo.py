@@ -3,9 +3,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# ==============================================================================
+
 # 1. PARÂMETROS GEOMÉTRICOS DO GARGALO DA GARRAFA (Altere com suas medidas)
-# ==============================================================================
+
 # Medidas físicas do gargalo e suas incertezas (em metros)
 L_gargalo = 0.076      # Comprimento físico do gargalo L (m)
 u_L = 0.001           # Incerteza do comprimento u_L (m)
@@ -20,9 +20,9 @@ u_S = 2 * np.pi * r_gargalo * u_r
 L_efetivo = L_gargalo + 1.45 * r_gargalo
 u_L_efetivo = np.sqrt(u_L**2 + (1.45 * u_r)**2)
 
-# ==============================================================================
+
 # 2. LEITURA DOS DADOS EXPERIMENTAIS
-# ==============================================================================
+
 PASTA_DO_SCRIPT = Path(__file__).resolve().parent
 CAMINHO_CSV = PASTA_DO_SCRIPT / 'dados_garrafa.csv'
 
@@ -33,10 +33,10 @@ u_V = df['u_V'].values   # Incerteza do volume (m³)
 f0 = df['f0'].values     # Frequência de ressonância fundamental (Hz)
 u_f0 = df['u_f0'].values # Incerteza da frequência (Hz)
 
-# ==============================================================================
+
 # 3. LINEARIZAÇÃO DO RESSONADOR DE HELMHOLTZ: f0² = (v² * S / (4*pi² * L')) * (1/V)
 # Linearização: Y = f0²  vs  X = 1/V
-# ==============================================================================
+
 X = 1 / V                # Eixo X = 1/V (m⁻³)
 Y = f0**2                # Eixo Y = f0² (Hz²)
 
@@ -55,10 +55,10 @@ u_A = np.sqrt(cov[0, 0])   # Incerteza do coeficiente angular A
 u_B = np.sqrt(cov[1, 1])   # Incerteza do coeficiente linear B
 cov_AB = cov[0, 1]         # Covariância entre A e B
 
-# ==============================================================================
+
 # 4. CÁLCULO DA VELOCIDADE DO SOM (v) E INSERTEZA PROPAGADA
 # A = (v² * S) / (4 * pi² * L')  =&gt;  v = 2 * pi * sqrt( (L' * A) / S )
-# ==============================================================================
+
 v = 2 * np.pi * np.sqrt((L_efetivo * A) / S)
 
 # Propagação combinada da velocidade do som v = f(L', A, S)
@@ -74,10 +74,7 @@ print(f"Comprimento Efetivo L' : {L_efetivo*100:.2f} ± {u_L_efetivo*100:.2f} cm
 print(f"Área da Seção Reta S   : {S*1e4:.3f} ± {u_S*1e4:.3f} cm²")
 print(f"Velocidade do Som (v)  : {v:.2f} ± {u_v:.2f} m/s")
 print("="*55)
-
-# ==============================================================================
 # 5. CONSTRUÇÃO DO GRÁFICO (Y vs X)
-# ==============================================================================
 x_ajuste = np.linspace(min(X) * 0.9, max(X) * 1.1, 100)
 y_ajuste = A * x_ajuste + B
 

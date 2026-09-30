@@ -3,9 +3,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# ==============================================================================
+
 # 1. PARÂMETROS GEOMÉTRICOS DO TUBO DE PVC (Altere com suas medidas)
-# ==============================================================================
+
 # Medidas físicas do tubo e suas incertezas (em metros)
 L_tubo = 0.501        # Comprimento físico do tubo L (m) [Ex: 40,0 cm = 0,400 m]
 u_L = 0.001           # Incerteza do comprimento u_L (m) [Ex: 1 mm]
@@ -18,9 +18,9 @@ m_extremidades = 2
 L_efetivo = L_tubo + 0.6 * m_extremidades * r_tubo
 u_L_efetivo = np.sqrt(u_L**2 + (1.2 * u_r)**2)
 
-# ==============================================================================
+
 # 2. LEITURA DOS DADOS EXPERIMENTAIS
-# ==============================================================================
+
 PASTA_DO_SCRIPT = Path(__file__).resolve().parent
 CAMINHO_CSV = PASTA_DO_SCRIPT / 'dados_tuboaa.csv'
 
@@ -31,10 +31,10 @@ n = df['n'].values       # Número do harmônico (n = 1, 2, 3, 4, ...)
 f_n = df['f_n'].values   # Frequência medida no topo do pico (Hz)
 u_fn = df['u_fn'].values # Incerteza da frequência (Hz)
 
-# ==============================================================================
+
 # 3. LINEARIZAÇÃO DO TUBO ABERTO-ABERTO: f_n = (v / (2 * L')) * n
 # Linearização: Y = f_n  vs  X = n
-# ==============================================================================
+
 X = n                    # Eixo X = n (número do harmônico, exato)
 Y = f_n                  # Eixo Y = f_n (frequência medida em Hz)
 
@@ -49,10 +49,10 @@ A, B = coef
 u_A = np.sqrt(cov[0, 0])   # Incerteza do coeficiente angular A
 u_B = np.sqrt(cov[1, 1])   # Incerteza do coeficiente linear B
 
-# ==============================================================================
+
 # 4. CÁLCULO DA VELOCIDADE DO SOM (v) E INCERTEZA PROPAGADA
 # A = v / (2 * L')  =&gt;  v = 2 * L' * A
-# ==============================================================================
+
 v = 2 * L_efetivo * A
 
 # Propagação combinada da velocidade do som v = f(L', A)
@@ -68,9 +68,9 @@ print(f"Comprimento Efetivo L' : {L_efetivo*100:.2f} ± {u_L_efetivo*100:.2f} cm
 print(f"Velocidade do Som (v)  : {v:.2f} ± {u_v:.2f} m/s")
 print("="*55)
 
-# ==============================================================================
+
 # 5. CONSTRUÇÃO DO GRÁFICO (Y vs X)
-# ==============================================================================
+
 x_ajuste = np.linspace(0.8, max(X) + 0.2, 100)
 y_ajuste = A * x_ajuste + B
 
