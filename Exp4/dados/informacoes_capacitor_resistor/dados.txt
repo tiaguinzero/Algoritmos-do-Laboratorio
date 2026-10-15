@@ -1,0 +1,10 @@
+Resistor valor nominal: 1000 ohms
+primeira faixa: Marrom
+segunda faixa: Preto
+terceira faixa: Vermelho
+quarta faixa: Dourado
+
+Capacitor Eletrolítico: 1 mF
+Tensão Capacitor Eletrolítico: 16 V
+
+Capacitor cerâmica: 1 µF
