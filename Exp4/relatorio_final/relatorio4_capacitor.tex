@@ -16,14 +16,17 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{microtype}
+
+\graphicspath{{graficos/}{../graficos/}}
+
 \makeatletter
 \renewcommand\section{\@startsection {section}{1}{\z@}%
-                                   {-1.8ex \@plus -0.5ex \@minus -.2ex}%
-                                   {0.8ex \@plus .2ex}%
+                                   {-1.6ex \@plus -0.4ex \@minus -.2ex}%
+                                   {0.6ex \@plus .2ex}%
                                    {\normalfont\large\bfseries}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-                                     {-1.4ex\@plus -0.4ex \@minus -.2ex}%
-                                     {0.6ex \@plus .2ex}%
+                                     {-1.2ex\@plus -0.3ex \@minus -.2ex}%
+                                     {0.5ex \@plus .2ex}%
                                      {\normalfont\normalsize\bfseries}}
 \makeatother
 
@@ -77,6 +80,7 @@
 \begin{document}
 
 % ==================== CAPA (PÁGINA NÃO CONTABILIZADA) ====================
+\hypersetup{pageanchor=false}
 \begin{titlepage}
     \centering
     
@@ -124,73 +128,70 @@
     {\normalsize Campinas -- SP \par}
     {\normalsize Outubro de 2026 \par}
 \end{titlepage}
+\hypersetup{pageanchor=true}
 
 % ==================== INÍCIO DO CORPO PRINCIPAL (LIMITE: 5 PÁGINAS) ====================
+\pagenumbering{arabic}
 \setcounter{page}{1}
-\setstretch{1.00}
+\setstretch{0.98}
 
 \begin{center}
     {\large \textbf{Experimento IV: Capacitor e Circuitos RC}} \par
-    \vspace{0.1cm}
-    {\small Tiago C. Conceição, Isadora G. França, Luiza B. Vasconcelos, Pedro H. M. Cosme, Marcus V. S. Bressan} \par
-    {\small Instituto de Física Gleb Wataghin, Universidade Estadual de Campinas (UNICAMP)}
 \end{center}
 
 \vspace{-0.3cm}
-\begin{abstract}
-\noindent
-Neste trabalho experimental investigou-se a resposta transiente de circuitos resistivo-capacitivos (RC) em série sob excitação de sinais degrau periódicos gerados por uma fonte de funções arbitrárias. Foram estudadas duas montagens com ordens de grandeza temporais distintas: uma com constante de tempo longa ($\tau \sim 1\text{ s}$), empregando um resistor nominal de $1\text{ k}\Omega$ e um capacitor eletrolítico de $1\text{ mF}$, e outra com constante de tempo curta ($\tau \sim 1\text{ ms}$), associando o mesmo resistor a um capacitor cerâmico de $1\ \mu\text{F}$. Os sinais de tensão nos terminais dos capacitores foram amostrados por um osciloscópio digital Tektronix TBS~1062 ($2500$ pontos por tela). Os parâmetros característicos foram estimados por dois métodos independentes: regressão linear por Mínimos Quadrados Ponderados (MMQ) do logaritmo neperiano da tensão transladada e ajuste não-linear direto (Levenberg-Marquardt) da função de decaimento exponencial. Para o capacitor eletrolítico, obteve-se $\tau_{\text{exp}} = (1{,}123 \pm 0{,}015)\text{ s}$ e $\tau_{\text{lin}} = (1{,}130 \pm 0{,}013)\text{ s}$, resultando em capacitâncias de $(1{,}07 \pm 0{,}03)\text{ mF}$ e $(1{,}08 \pm 0{,}03)\text{ mF}$, respectivamente, compatíveis com a especificação nominal ($Z = 0{,}58$). Para o capacitor cerâmico, determinou-se $\tau_{\text{exp}} = (1{,}089 \pm 0{,}018)\text{ ms}$ e $\tau_{\text{lin}} = (1{,}094 \pm 0{,}017)\text{ ms}$, fornecendo $C = (1{,}04 \pm 0{,}03)\ \mu\text{F}$ ($Z = 0{,}56$). A inclusão da resistência de saída de $50\ \Omega$ do gerador foi fundamental para a exatidão física dos modelos. Discutiram-se minuciosamente as discrepâncias entre os ajustes linear e não-linear, o efeito da quantização de 8 bits do osciloscópio nas caudas logarítmicas e a simetria com o ciclo de carga.
-\end{abstract}
+\section{Resumo}
+Neste trabalho experimental investigou-se a resposta transiente de circuitos resistivo-capacitivos (RC) em série sob excitação de sinais degrau periódicos gerados por uma fonte de funções arbitrárias. Foram estudadas duas montagens com ordens de grandeza temporais distintas: uma com constante de tempo longa ($\tau \sim 1\text{ s}$), empregando um resistor nominal de $1\text{ k}\Omega$ e um capacitor eletrolítico de $1\text{ mF}$, e outra com constante de tempo curta ($\tau \sim 1\text{ ms}$), associando o mesmo resistor a um capacitor cerâmico de $1\ \mu\text{F}$. Os sinais de tensão nos terminais dos capacitores foram amostrados por um osciloscópio digital Tektronix TBS~1062 ($2500$ pontos por tela). Os parâmetros característicos foram estimados por dois métodos independentes: regressão linear por Mínimos Quadrados Ponderados (MMQ) do logaritmo neperiano da tensão transladada e ajuste não-linear direto (Levenberg-Marquardt) da função de decaimento exponencial. Para o capacitor eletrolítico, obteve-se $\tau_{\text{exp}} = (1{,}123 \pm 0{,}015)\text{ s}$ e $\tau_{\text{lin}} = (1{,}130 \pm 0{,}013)\text{ s}$, resultando em capacitâncias de $(1{,}07 \pm 0{,}03)\text{ mF}$ e $(1{,}08 \pm 0{,}03)\text{ mF}$, respectivamente, compatíveis com a especificação nominal ($Z = 0{,}58$). Para o capacitor cerâmico, determinou-se $\tau_{\text{exp}} = (1{,}089 \pm 0{,}018)\text{ ms}$ e $\tau_{\text{lin}} = (1{,}094 \pm 0{,}017)\text{ ms}$, fornecendo $C = (1{,}04 \pm 0{,}03)\ \mu\text{F}$ ($Z = 0{,}56$). A inclusão da resistência de saída de $50\ \Omega$ do gerador foi fundamental para a exatidão física dos modelos. Discutiram-se minuciosamente as discrepâncias entre os ajustes linear e não-linear, o efeito da quantização de 8 bits do osciloscópio nas caudas logarítmicas, a aleatoriedade dos resíduos e a simetria com o ciclo de carga.
 
-\vspace{-0.3cm}
-\section{Introdução}
+\vspace{-0.25cm}
+\section{Introdução e Objetivos}
 \vspace{-0.15cm}
 O capacitor é um elemento passivo de circuito capaz de armazenar energia em um campo eletrostático através da separação de cargas elétricas entre condutores isolados por um meio dielétrico. O conceito remonta à invenção da garrafa de Leiden no século XVIII e consolidou-se na formulação do eletromagnetismo clássico~\cite{halliday}. A capacitância $C$ define a relação de proporcionalidade entre a carga acumulada $q$ e a diferença de potencial elétrico $V_C$ estabelecida entre as armaduras, $q = C V_C$, cuja unidade no Sistema Internacional é o Farad ($\text{F} = \text{C}/\text{V}$).
 
 Em circuitos lineares contendo elementos resistivos e capacitivos em série (circuitos RC), o processo de redistribuição de cargas e acomodação energética não ocorre instantaneamente, sendo governado pela constante de tempo característica $\tau = R C$. Circuitos com essa topologia são a base de filtros analógicos passa-baixas e passa-altas, integradores, diferenciadores e temporizadores na eletrônica analógica e digital. A determinação experimental precisa de $\tau$ e o confronto entre técnicas de regressão linear ponderada e ajuste direto não-linear fornecem um ambiente ideal para o estudo de incertezas instrumentais e limitações de resolução digital.
 
 \noindent\textbf{Objetivos do Trabalho:}
-Investigar experimentalmente a dinâmica de carga e descarga de circuitos RC em duas escalas de tempo: (i)~determinar a constante de tempo $\tau$ e a capacitância $C$ de um circuito RC de tempo longo ($\tau \sim 1\text{ s}$), associando um capacitor eletrolítico de $1\text{ mF}$ a um resistor de $1\text{ k}\Omega$; (ii)~determinar $\tau$ e $C$ de um circuito RC de tempo curto ($\tau \sim 1\text{ ms}$), associando um capacitor cerâmico de $1\ \mu\text{F}$ ao mesmo resistor; e (iii)~comparar criticamente os métodos de regressão linear ponderada via linearização logarítmica e ajuste direto não-linear, confrontando os parâmetros com as especificações nominais e avaliando limitações como a quantização de 8 bits do osciloscópio digital.
+Investigar experimentalmente a dinâmica de carga e descarga de circuitos RC em duas escalas de tempo distintas: (i)~determinar a constante de tempo $\tau$ e a capacitância $C$ de um circuito RC de tempo longo ($\tau \sim 1\text{ s}$), associando um capacitor eletrolítico de $1\text{ mF}$ a um resistor de $1\text{ k}\Omega$; (ii)~determinar $\tau$ e $C$ de um circuito RC de tempo curto ($\tau \sim 1\text{ ms}$), associando um capacitor cerâmico de $1\ \mu\text{F}$ ao mesmo resistor; e (iii)~comparar criticamente os métodos de regressão linear ponderada via linearização logarítmica e ajuste direto não-linear, confrontando os parâmetros com as especificações nominais e avaliando limitações como a quantização de 8 bits do osciloscópio digital.
 
 \vspace{-0.25cm}
 \section{Modelo Teórico e Suposições}
 \vspace{-0.15cm}
-Considere a malha em série formada por uma fonte de tensão ideal $\varepsilon(t)$, um resistor de resistência ôhmica $R$ e um capacitor de capacitância $C$. Aplicando-se a segunda lei de Kirchhoff (lei das malhas):
+Considere a malha em série formada por uma fonte de tensão periódica $\varepsilon(t)$ com resistência interna de saída $R_{\text{ger}}$, um resistor ôhmico de resistência $R$ e um capacitor de capacitância $C$. Aplicando-se a segunda lei de Kirchhoff (lei das malhas) ao circuito:
 \begin{equation}
-    \varepsilon(t) - V_R(t) - V_C(t) = 0 \label{eq:kirchhoff}
+    \varepsilon(t) - R_{\text{ger}} I(t) - R I(t) - V_C(t) = 0 \implies \varepsilon(t) - R_{\text{eq}} I(t) - V_C(t) = 0 \label{eq:kirchhoff}
 \end{equation}
-Sabendo que a corrente na malha relaciona-se à carga do capacitor por $I(t) = dq/dt = C \, (dV_C/dt)$ e que o resistor obedece à lei de Ohm ($V_R(t) = R I(t)$), a Eq.~\eqref{eq:kirchhoff} resulta na equação diferencial ordinária de primeira ordem:
+onde $R_{\text{eq}} = R + R_{\text{ger}}$ representa a resistência equivalente total da malha de condução ($R_{\text{ger}} = 50\ \Omega$). Sabendo que a corrente relaciona-se à carga do capacitor por $I(t) = dq/dt = C \, (dV_C/dt)$, a Eq.~\eqref{eq:kirchhoff} fornece a equação diferencial ordinária (EDO) de primeira ordem:
 \begin{equation}
     \frac{dV_C(t)}{dt} + \frac{1}{R_{\text{eq}}C} V_C(t) = \frac{\varepsilon(t)}{R_{\text{eq}}C} \label{eq:edo}
 \end{equation}
-onde $R_{\text{eq}} = R + R_{\text{ger}}$ incorpora a resistência interna de saída da fonte de sinal ($R_{\text{ger}} = 50\ \Omega$), e $\tau = R_{\text{eq}} C$ é a constante de tempo do sistema. A dedução completa da solução analítica por separação de variáveis encontra-se no Apêndice~\ref{ap:deducao}.
+A constante de tempo intrínseca do circuito é $\tau = R_{\text{eq}} C$. A dedução matemática analítica completa por integração com fator integrante encontra-se no Apêndice~\ref{ap:deducao}.
 
-No procedimento experimental, o gerador de funções produz uma onda quadrada periódica de amplitude de pico a pico $\Delta V \approx 4\text{ V}$ oscilando entre os patamares $V_{\text{sup}} \approx +2\text{ V}$ e $V_{\infty} \approx -2\text{ V}$ (sem acréscimo de deslocamento CC artificial). Quando o gerador comuta do nível superior para o inferior no instante $t_0$, a descarga do capacitor é governada por:
+No procedimento experimental, o gerador de funções produz uma onda quadrada periódica com amplitude de pico a pico $\Delta V \approx 4\text{ V}$, alternando entre patamares de tensão superior $V_{\text{sup}} \approx +2\text{ V}$ e inferior $V_{\infty} \approx -2\text{ V}$ (sem adição de deslocamento CC externo). Durante o semiciclo de descarga, iniciado no instante $t_0$, a evolução temporal da tensão no capacitor obedece à solução analítica:
 \begin{equation}
     V_C(t) = V_{\infty} + \Delta V \, e^{-(t - t_0)/\tau} \label{eq:modelo_exp}
 \end{equation}
-Para linearizar a Eq.~\eqref{eq:modelo_exp}, define-se a tensão relativa transladada $\Delta v(t) = V_C(t) - V_{\infty}$. Aplicando o logaritmo natural, obtém-se a equação da reta:
+Para linearizar a Eq.~\eqref{eq:modelo_exp}, define-se a tensão transladada $\Delta v(t) = V_C(t) - V_{\infty}$. Aplicando-se o logaritmo natural, obtém-se a relação linear:
 \begin{equation}
     Y(t) \equiv \ln[V_C(t) - V_{\infty}] = \ln(\Delta V) - \frac{1}{\tau} (t - t_0) = A \, t + B \label{eq:linearizacao}
 \end{equation}
-onde o coeficiente angular fornece a constante de tempo por $\tau_{\text{lin}} = -1/A$. A incerteza propagada em cada ponto transformado é dada por $u_{Y} = u_{V_C} / [V_C(t) - V_{\infty}]$, evidenciando a necessidade de ponderação dos pontos no MMQ (Apêndice~\ref{ap:incertezas}).
+onde o coeficiente angular fornece a constante de tempo por $\tau_{\text{lin}} = -1/A$ e o coeficiente linear fornece $\ln(\Delta V)$. A incerteza propagada em cada ponto transformado é dada por $u_{Y} = u_{V_C} / [V_C(t) - V_{\infty}]$, tornando mandatória a ponderação dos resíduos por pesos $w_i = 1/u_{Y_i}^2$ via MMQ ponderado~\cite{vuolo} (Apêndice~\ref{ap:incertezas}).
 
-\noindent\textbf{Suposições do modelo:}
-(i)~Comportamento estritamente ôhmico do resistor na faixa de frequências e tensões de trabalho;
-(ii)~Dielétricos lineares e ausência de perdas dielétricas ou correntes de fuga apreciáveis;
-(iii)~Impedância de entrada do osciloscópio ($R_{\text{osc}} = 1\text{ M}\Omega \parallel 20\text{ pF}$) suficientemente elevada frente a $R_{\text{eq}} \approx 1050\ \Omega$, de modo que a corrente desviada pelo canal de medição seja inferior a $0{,}1\%$;
-(iv)~Indutâncias e capacitâncias parasitas dos cabos de conexão desprezíveis nas frequências de $0{,}1\text{ Hz}$ e $100\text{ Hz}$.
+\noindent\textbf{Suposições Fundamentais do Modelo:}
+(i)~Comportamento estritamente linear e ôhmico do resistor na faixa de frequências empregada;
+(ii)~Dielétricos ideais, sem perdas dielétricas por relaxação, corrente de fuga apreciável ou histerese;
+(iii)~Impedância de entrada do osciloscópio ($R_{\text{osc}} = 1\text{ M}\Omega \parallel 20\text{ pF}$) ordens de grandeza superior à resistência da malha ($R_{\text{eq}} \approx 1050\ \Omega$), garantindo que a perturbação de carga inserida pelo instrumento seja inferior a $0{,}1\%$;
+(iv)~Indutâncias parasitas dos cabos coaxiais e da matriz de contatos desprezíveis nas frequências de teste ($0{,}1\text{ Hz}$ e $100\text{ Hz}$).
 
 \vspace{-0.25cm}
 \section{Materiais e Métodos Experimentais}
 \vspace{-0.15cm}
 \noindent\textbf{Equipamentos e Componentes:}
-(i)~Gerador de funções arbitrárias BK Precision modelo 4052 ($5\text{ MHz}$, impedância de saída de $50\ \Omega$);
-(ii)~Osciloscópio digital Tektronix TBS~1062 ($60\text{ MHz}$, taxa de amostragem de $1\text{ GS/s}$, $2500$ pontos por registro);
-(iii)~Resistor de filme de carbono com valor nominal de $1000\ \Omega$ (código de cores: marrom, preto, vermelho, dourado; tolerância $\pm 5\%$);
-(iv)~Capacitor eletrolítico de valor nominal $1{,}0\text{ mF}$, tensão de isolação de $16\text{ V}$ (tolerância industrial $\pm 20\%$);
-(v)~Capacitor cerâmico de disco de valor nominal $1{,}0\ \mu\text{F}$ (tolerância $\pm 10\%$);
-(vi)~Matriz de contatos (\textit{protoboard}), pontas de prova coaxiais BNC-jacaré e cabos de conexão. As fotos reais dos aparelhos e da montagem estão reunidas no Apêndice~\ref{ap:fotos}.
+(i)~Gerador de funções arbitrárias BK Precision 4052~\cite{bkprecision} ($5\text{ MHz}$, impedância de saída de $50\ \Omega$);
+(ii)~Osciloscópio digital de armazenamento Tektronix TBS~1062~\cite{tektronix} ($60\text{ MHz}$, $1\text{ GS/s}$, $2500$ pontos de aquisição horizontal);
+(iii)~Resistor de filme de carbono de valor nominal $1000\ \Omega$ (código de cores: marrom, preto, vermelho, dourado; tolerância $\pm 5\%$, incerteza padrão $u_R = 29\ \Omega$); o valor nominal foi adotado por ausência de registro prévio via multímetro na bancada;
+(iv)~Capacitor eletrolítico de valor nominal $1{,}0\text{ mF}$, isolação $16\text{ V}$ (tolerância $\pm 20\%$, $u_C = 0{,}12\text{ mF}$);
+(v)~Capacitor cerâmico de disco de valor nominal $1{,}0\ \mu\text{F}$ (tolerância $\pm 10\%$, $u_C = 0{,}06\ \mu\text{F}$);
+(vi)~Matriz de contatos (\textit{protoboard}), cabos coaxiais BNC-jacaré e pontas de prova. As fotos do arranjo encontram-se no Apêndice~\ref{ap:fotos}.
 
 \begin{figure}[H]
     \centering
@@ -230,18 +231,19 @@ onde o coeficiente angular fornece a constante de tempo por $\tau_{\text{lin}} =
         \caption{Esquema elétrico da malha RC em série.}
         \label{fig:circuito}
     \end{minipage}\hfill
-    \begin{minipage}[c]{0.55\textwidth}
-        \captionof{table}{Especificações nominais e valores previstos dos circuitos.}
+    \begin{minipage}[c]{0.56\textwidth}
+        \captionof{table}{Especificações nominais e valores teóricos previstos.}
         \label{tab:especificacoes}
         \centering
         \scriptsize
-        \begin{tabular}{lccc}
+        \setlength{\tabcolsep}{2.5pt}
+        \begin{tabular}{@{}lccc@{}}
             \toprule
-            \textbf{Parâmetro / Componente} & \textbf{Valor Nominal} & \textbf{Tolerância} & \textbf{Incerteza-Padrão ($u$)} \\
+            \textbf{Componente / Grandeza} & \textbf{Nominal} & \textbf{Tol.} & \textbf{Incerteza-Padrão ($u$)} \\
             \midrule
-            Resistor ($R$) & $1000\ \Omega$ & $\pm 5\%$ & $28{,}9\ \Omega$ \\
-            Resistência interna ($R_{\text{ger}}$) & $50\ \Omega$ & -- & desprezível \\
-            Resistência equivalente ($R_{\text{eq}}$) & $1050\ \Omega$ & -- & $28{,}9\ \Omega$ \\
+            Resistor de filme ($R$) & $1000\ \Omega$ & $\pm 5\%$ & $29\ \Omega$ \\
+            Saída do gerador ($R_{\text{ger}}$) & $50\ \Omega$ & -- & desprezível \\
+            Resistência total ($R_{\text{eq}}$) & $1050\ \Omega$ & -- & $29\ \Omega$ \\
             Capacitor Eletrolítico ($C_1$) & $1{,}0\text{ mF}$ & $\pm 20\%$ & $0{,}12\text{ mF}$ \\
             Capacitor Cerâmico ($C_2$) & $1{,}0\ \mu\text{F}$ & $\pm 10\%$ & $0{,}06\ \mu\text{F}$ \\
             \midrule
@@ -253,63 +255,82 @@ onde o coeficiente angular fornece a constante de tempo por $\tau_{\text{lin}} =
     \vspace{-0.2cm}
 \end{figure}
 
-\noindent\textbf{Procedimento Experimental:}
-Montou-se o circuito na matriz de contatos com estrita observância à polaridade do capacitor eletrolítico. O canal 1 do osciloscópio foi ligado em paralelo ao capacitor com acoplamento CC.
+\noindent\textbf{Procedimento Experimental e Modos de Operação:}
+Conforme as diretrizes do Guia de Laboratório~\cite{guia}, montou-se o circuito em série na matriz de contatos, atentando rigorosamente à polaridade do terminal negativo do capacitor eletrolítico. O canal 1 do osciloscópio foi conectado em paralelo ao capacitor sob acoplamento CC.
 \begin{enumerate}\setlength{\itemsep}{-2pt}
-    \item \textbf{Ensaio I (Tempo longo):} Conectou-se o capacitor eletrolítico ($1\text{ mF}$) em série com $R = 1\text{ k}\Omega$. Ajustou-se o gerador para onda quadrada de $4\text{ V}_{\text{pp}}$, frequência de $0{,}10\text{ Hz}$ ($T = 10\text{ s}$) e a base de tempo do osciloscópio para $1{,}00\text{ s/div}$ (modo \textit{Scan}), permitindo visualizar a carga e descarga completas. Os dados temporais brutos foram exportados em formato CSV via pen-drive USB.
-    \item \textbf{Ensaio II (Tempo curto):} Substituiu-se o capacitor pelo cerâmico ($1\ \mu\text{F}$). O gerador foi ajustado para onda quadrada de $4\text{ V}_{\text{pp}}$, frequência nominal de $100\text{ Hz}$ (medida pelo contador do osciloscópio em $99{,}9834\text{ Hz}$, $T = 10{,}002\text{ ms}$) e a escala horizontal do osciloscópio para $2{,}50\text{ ms/div}$, cobrindo 2,5 ciclos completos. Os dados brutos foram salvos em arquivo CSV.
+    \item \textbf{Ensaio I (Tempo longo):} Conectou-se o capacitor eletrolítico ($1\text{ mF}$) em série com $R = 1\text{ k}\Omega$. Ajustou-se o gerador para onda quadrada de $4{,}0\text{ V}_{\text{pp}}$, frequência de $0{,}10\text{ Hz}$ ($T = 10\text{ s}$) e a base de tempo para $1{,}00\text{ s/div}$. Como escalas horizontais $\ge 100\text{ ms/div}$ entram automaticamente no modo \textit{Scan} (varredura contínua sem disparo por borda), a tela foi congelada ao final da aquisição e exportada em arquivo CSV via USB.
+    \item \textbf{Ensaio II (Tempo curto):} Substituiu-se o capacitor pelo cerâmico ($1\ \mu\text{F}$). O gerador forneceu onda quadrada de $4{,}0\text{ V}_{\text{pp}}$ a $100\text{ Hz}$ ($99{,}9834\text{ Hz}$ no contador interno, $T = 10{,}002\text{ ms}$) com base de tempo em $2{,}50\text{ ms/div}$, operando em modo disparado por borda (Trigger nível $0\text{ V}$). Os $2500$ pontos foram gravados em CSV.
 \end{enumerate}
 
 \vspace{-0.25cm}
 \section{Resultados e Análises}
 \vspace{-0.15cm}
-O processamento e os ajustes numéricos foram implementados em Python (código documentado no Apêndice~\ref{ap:codigos}). Cada leitura de tensão $V_C$ do osciloscópio recebeu a incerteza combinada $u_{V_C} = \sqrt{u_{\text{leit}}^2 + u_{\text{cal}}^2}$, onde $u_{\text{leit}} = d/(2\sqrt{3}) = 0{,}023\text{ V}$ provém da resolução de 8 bits ($d = 2\text{ V/div} / 25 = 0{,}08\text{ V}$) e $u_{\text{cal}} = (0{,}03 |V_C| + 0{,}10 \times 2\text{ V} + 1\text{ mV})/\sqrt{3}$ representa a exatidão de calibração do fabricante~\cite{tektronix}.
+O tratamento e os ajustes foram implementados em scripts Python (Apêndices~\ref{ap:utils}, \ref{ap:codigos} e~\ref{ap:codigos_cer}). Cada medição de tensão $V_C$ recebeu a incerteza combinada Tipo B $u_{V_C} = \sqrt{u_{\text{leit}}^2 + u_{\text{cal}}^2}$, onde $u_{\text{leit}} = d/(2\sqrt{3}) = 0{,}023\text{ V}$ provém da resolução de 8 bits ($d = 2\text{ V/div} / 25 = 0{,}08\text{ V}$) e $u_{\text{cal}} = (0{,}03 |V_C| + 0{,}10 \times 2\text{ V} + 1\text{ mV})/\sqrt{3}$ representa a exatidão de calibração do fabricante~\cite{tektronix}.
 
-\subsection{Parte I: Circuito RC com Capacitor Eletrolítico ($\tau \sim 1\text{ s}$)}
+\subsection{Parte I: Circuito RC com Capacitor Eletrolítico (\texorpdfstring{$\tau \sim 1\text{ s}$}{tau ~ 1 s})}
 \vspace{-0.1cm}
-No arquivo \texttt{dados/capacitor\_eletronico/F0000CH1.CSV}, a varredura contínua no modo \textit{Scan} foi interrompida antes de completar o segundo ciclo, gerando 250 pontos com o valor sentinela $-10{,}24\text{ V}$ (código de saturação mínima do conversor A/D) entre $t = 7{,}996\text{ s}$ e $8{,}992\text{ s}$. Como o período da onda ($10{,}0\text{ s}$) coincide com a largura da tela ($10\text{ div} \times 1\text{ s/div}$), o sinal é periódico e o tempo decorrido desde o início da descarga foi obtido por dobramento de fase: $s = (t - t_{\text{desc}}) \pmod{10\text{ s}}$, onde a borda de descida foi detectada em $t_{\text{desc}} = 6{,}992\text{ s}$. Foram excluídos os pontos de saturação e o semiciclo de carga, reconstruindo-se integralmente os $5\text{ s}$ da curva de descarga ($N = 986$ pontos).
+No arquivo \texttt{F0000CH1.CSV}, a varredura contínua no modo \textit{Scan} foi interrompida antes de completar o ciclo, gerando 250 pontos sentinela de saturação mínima ($-10{,}24\text{ V}$) entre $t = 7{,}996\text{ s}$ e $8{,}992\text{ s}$. Como o período da onda ($10{,}0\text{ s}$) coincide com a largura da tela ($10\text{ div} \times 1\text{ s/div}$), o sinal é periódico e o tempo decorrido desde o início da descarga foi reconstruído por dobramento de fase: $s = (t - t_{\text{desc}}) \pmod{10\text{ s}}$, com borda detectada em $t_{\text{desc}} = 6{,}992\text{ s}$. Foram excluídos os pontos de saturação e o semiciclo de carga, obtendo-se $N = 986$ pontos válidos de descarga.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.78\textwidth]{graficos/eletrolitico_descarga.pdf}
+    \includegraphics[width=0.72\textwidth]{graficos/eletrolitico_descarga.pdf}
     \vspace{-0.25cm}
     \caption{Curvas experimentais de descarga do capacitor eletrolítico ($1\text{ mF}$): (a) Ajuste exponencial não-linear direto $V_C(t) = V_{\infty} + \Delta V e^{-t/\tau}$ com resíduos padronizados; (b) Linearização logarítmica $\ln(V_C - V_{\infty})$ versus tempo com reta ajustada por MMQ ponderado.}
     \label{fig:eletrolitico}
 \end{figure}
 
-O ajuste não-linear direto (algoritmo de Levenberg-Marquardt) forneceu:
+O ajuste não-linear direto (algoritmo de Levenberg-Marquardt) convergiu para:
 \begin{equation}
-    V_{\infty} = (-2{,}020 \pm 0{,}010)\text{ V}, \quad \Delta V = (3{,}829 \pm 0{,}017)\text{ V}, \quad \tau_{\text{exp}} = (1{,}123 \pm 0{,}015)\text{ s} \quad (\chi^2_{\text{red}} = 0{,}047)
+    V_{\infty} = (-2{,}025 \pm 0{,}010)\text{ V}, \quad \Delta V = (3{,}829 \pm 0{,}017)\text{ V}, \quad \tau_{\text{exp}} = (1{,}123 \pm 0{,}015)\text{ s} \quad (\chi^2_{\text{red}} = 0{,}047)
 \end{equation}
-Para a linearização, adotou-se o limiar de corte $V_C - V_{\infty} \ge 0{,}20\text{ V}$ ($N = 561$ pontos), evitando regiões dominadas pelo ruído de fundo. A regressão linear por MMQ ponderado resultou em:
+Para a linearização, adotou-se o limiar de corte $V_C - V_{\infty} \ge 0{,}20\text{ V}$ ($N = 561$ pontos), eliminando pontos ruidosos. A regressão linear por MMQ ponderado resultou em:
 \begin{equation}
     A = (-0{,}885 \pm 0{,}008)\text{ s}^{-1}, \quad B = (1{,}341 \pm 0{,}005) \quad (\chi^2_{\text{red}} = 0{,}052)
 \end{equation}
-O coeficiente linear obtido concorda perfeitamente com o valor teórico esperado $\ln(\Delta V) = \ln(3{,}829) = 1{,}343$. A constante de tempo linearizada, incorporando a incerteza de calibração do patamar assintótico $V_{\infty}$ ($0{,}0094\text{ s}$), vale $\tau_{\text{lin}} = (1{,}130 \pm 0{,}013)\text{ s}$. Como verificação cruzada de robustez, o ajuste realizado apenas sobre o trecho contínuo antes da interrupção da varredura ($N = 251$ pontos) forneceu $\tau = (1{,}07 \pm 0{,}11)\text{ s}$, e o ajuste da curva de carga completa ($N = 1257$) forneceu $\tau_{\text{carga}} = (1{,}120 \pm 0{,}012)\text{ s}$, comprovando a simetria dinâmica do processo.
+O coeficiente linear obtido concorda com $\ln(\Delta V) = \ln(3{,}829) = 1{,}343$. Incorporando a incerteza de calibração do patamar assintótico $V_{\infty}$ ($0{,}0094\text{ s}$), obteve-se $\tau_{\text{lin}} = (1{,}130 \pm 0{,}013)\text{ s}$. Como verificação cruzada, o ajuste realizado apenas sobre o trecho contínuo da varredura atual ($N = 251$ pontos) forneceu $\tau = (1{,}07 \pm 0{,}11)\text{ s}$, e o ajuste da curva de carga completa ($N = 1257$) produziu $\tau_{\text{carga}} = (1{,}120 \pm 0{,}012)\text{ s}$, confirmando a simetria transiente. A capacitância experimental calculada foi $C_{\text{exp}} = (1{,}07 \pm 0{,}03)\text{ mF}$ e $C_{\text{lin}} = (1{,}08 \pm 0{,}03)\text{ mF}$.
 
-A partir de $C = \tau / R_{\text{eq}}$, com $R_{\text{eq}} = (1050 \pm 29)\ \Omega$, obteve-se $C_{\text{exp}} = (1{,}07 \pm 0{,}03)\text{ mF}$ e $C_{\text{lin}} = (1{,}08 \pm 0{,}03)\text{ mF}$.
-
-\subsection{Parte II: Circuito RC com Capacitor Cerâmico ($\tau \sim 1\text{ ms}$)}
+\subsection{Parte II: Circuito RC com Capacitor Cerâmico (\texorpdfstring{$\tau \sim 1\text{ ms}$}{tau ~ 1 ms})}
 \vspace{-0.1cm}
-No arquivo \texttt{dados/capacitor\_ceramico/F0000CH1.CSV}, isolou-se um semiciclo completo de descarga de $4{,}9\text{ ms}$ ($\sim 5\tau$, $N = 491$ pontos) a partir da borda de descida em $t_0 = -5{,}93\text{ ms}$.
+No arquivo \texttt{F0000CH1.CSV}, isolou-se um semiciclo completo de descarga de $4{,}9\text{ ms}$ ($\sim 5\tau$, $N = 491$ pontos) a partir da borda de descida em $t_0 = -5{,}93\text{ ms}$.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.78\textwidth]{graficos/ceramico_descarga.pdf}
+    \includegraphics[width=0.72\textwidth]{graficos/ceramico_descarga.pdf}
     \vspace{-0.25cm}
     \caption{Curvas experimentais de descarga do capacitor cerâmico ($1\ \mu\text{F}$): (a) Ajuste exponencial não-linear direto com resíduos padronizados; (b) Linearização logarítmica via MMQ ponderado.}
     \label{fig:ceramico}
 \end{figure}
 
-O ajuste exponencial direto convergiu para:
+O ajuste exponencial direto forneceu:
 \begin{equation}
     V_{\infty} = (-2{,}031 \pm 0{,}015)\text{ V}, \quad \Delta V = (3{,}849 \pm 0{,}027)\text{ V}, \quad \tau_{\text{exp}} = (1{,}089 \pm 0{,}018)\text{ ms} \quad (\chi^2_{\text{red}} = 0{,}057)
 \end{equation}
-A linearização logarítmica ponderada ($V_C - V_{\infty} \ge 0{,}20\text{ V}$, $N = 312$ pontos) forneceu:
+A regressão linear ponderada ($V_C - V_{\infty} \ge 0{,}20\text{ V}$, $N = 312$ pontos) resultou em:
 \begin{equation}
     A = (-914 \pm 9)\text{ s}^{-1}, \quad B = (1{,}346 \pm 0{,}007) \implies \tau_{\text{lin}} = (1{,}094 \pm 0{,}017)\text{ ms} \quad (\chi^2_{\text{red}} = 0{,}064)
 \end{equation}
-O coeficiente linear reproduz fidedignamente $\ln(\Delta V) = \ln(3{,}849) = 1{,}348$. O segundo semiciclo de descarga gerou $\tau = (1{,}091 \pm 0{,}018)\text{ ms}$ e a curva de carga produziu $\tau_{\text{carga}} = (1{,}088 \pm 0{,}018)\text{ ms}$, demonstrando alta reprodutibilidade estatística. A capacitância experimental deduzida foi $C_{\text{exp}} = (1{,}04 \pm 0{,}03)\ \mu\text{F}$ e $C_{\text{lin}} = (1{,}04 \pm 0{,}03)\ \mu\text{F}$.
+reproduzindo fidedignamente $\ln(\Delta V) = 1{,}348$. O segundo semiciclo de descarga forneceu $\tau = (1{,}091 \pm 0{,}018)\text{ ms}$ e a curva de carga gerou $\tau_{\text{carga}} = (1{,}088 \pm 0{,}018)\text{ ms}$. Deduziu-se $C_{\text{exp}} = (1{,}04 \pm 0{,}03)\ \mu\text{F}$ e $C_{\text{lin}} = (1{,}04 \pm 0{,}03)\ \mu\text{F}$.
+
+\begin{table}[H]
+    \centering
+    \caption{Amostra representativa dos dados de descarga (conjuntos completos no Apêndice~\ref{ap:tabelas}).}
+    \label{tab:amostra_dados}
+    \vspace{-0.15cm}
+    \scriptsize
+    \setlength{\tabcolsep}{3.5pt}
+    \begin{tabular}{ccccc|ccccc}
+        \toprule
+        \multicolumn{5}{c|}{\textbf{Capacitor Eletrolítico ($1\text{ mF}$)}} & \multicolumn{5}{c}{\textbf{Capacitor Cerâmico ($1\ \mu\text{F}$)}} \\
+        $t$ (s) & $V_C$ (V) & $u_{V_C}$ (V) & $\ln(V_C - V_\infty)$ & $u_Y$ & $t$ (ms) & $V_C$ (V) & $u_{V_C}$ (V) & $\ln(V_C - V_\infty)$ & $u_Y$ \\
+        \midrule
+        $0{,}000$ & $+1{,}84$ & $0{,}15$ & $1{,}352$ & $0{,}039$ & $0{,}00$ & $+1{,}84$ & $0{,}15$ & $1{,}353$ & $0{,}039$ \\
+        $0{,}500$ & $+0{,}40$ & $0{,}13$ & $0{,}886$ & $0{,}052$ & $0{,}50$ & $+0{,}32$ & $0{,}12$ & $0{,}855$ & $0{,}053$ \\
+        $1{,}000$ & $-0{,}48$ & $0{,}13$ & $0{,}435$ & $0{,}082$ & $1{,}00$ & $-0{,}48$ & $0{,}13$ & $0{,}439$ & $0{,}082$ \\
+        $2{,}004$ & $-1{,}36$ & $0{,}14$ & $-0{,}408$ & $0{,}213$ & $2{,}00$ & $-1{,}44$ & $0{,}14$ & $-0{,}527$ & $0{,}242$ \\
+        $3{,}000$ & $-1{,}76$ & $0{,}15$ & $-1{,}329$ & $0{,}560$ & $3{,}00$ & $-1{,}76$ & $0{,}15$ & $-1{,}307$ & $0{,}548$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \begin{table}[H]
     \centering
@@ -317,18 +338,19 @@ O coeficiente linear reproduz fidedignamente $\ln(\Delta V) = \ln(3{,}849) = 1{,
     \label{tab:sintese}
     \vspace{-0.15cm}
     \scriptsize
+    \setlength{\tabcolsep}{3.2pt}
     \renewcommand{\arraystretch}{0.92}
-    \begin{tabular}{lcccccc}
+    \begin{tabular}{@{}lcccccc@{}}
         \toprule
-        \textbf{Circuito / Grandeza} & \textbf{Teórico (Nominal)} & \textbf{Ajuste Não-Linear} & \textbf{Ajuste Linear} & \textbf{$Z(\text{exp}, \text{teo})$} & \textbf{$Z(\text{lin}, \text{teo})$} & \textbf{$Z(\text{exp}, \text{lin})$} \\
+        \textbf{Circuito / Grandeza} & \textbf{Nominal Teórico} & \textbf{Ajuste Não-Linear} & \textbf{Ajuste Linear} & \textbf{$Z_{\text{exp,teo}}$} & \textbf{$Z_{\text{lin,teo}}$} & \textbf{$Z_{\text{exp,lin}}$} \\
         \midrule
         \textbf{Capacitor Eletrolítico} & & & & & & \\
-        $\tau$ (s) & $1{,}05 \pm 0{,}12$ & $1{,}123 \pm 0{,}015$ & $1{,}130 \pm 0{,}013$ & $0{,}58$ & $0{,}64$ & $0{,}33$ \\
-        Capacitância $C$ (mF) & $1{,}00 \pm 0{,}12$ & $1{,}07 \pm 0{,}03$ & $1{,}08 \pm 0{,}03$ & $0{,}58$ & $0{,}64$ & $0{,}24$ \\
+        Constante de tempo $\tau$ (s) & $1{,}05 \pm 0{,}12$ & $1{,}123 \pm 0{,}015$ & $1{,}130 \pm 0{,}013$ & $0{,}58$ & $0{,}64$ & $0{,}33$ \\
+        Capacitância $C$ (mF) & $1{,}00 \pm 0{,}12$ & $1{,}07 \pm 0{,}03$ & $1{,}08 \pm 0{,}03$ & $0{,}58$ & $0{,}64$ & $0{,}14$ \\
         $\chi^2_{\text{red}}$ & -- & $0{,}047$ & $0{,}052$ & -- & -- & -- \\
         \midrule
         \textbf{Capacitor Cerâmico} & & & & & & \\
-        $\tau$ (ms) & $1{,}05 \pm 0{,}07$ & $1{,}089 \pm 0{,}018$ & $1{,}094 \pm 0{,}017$ & $0{,}57$ & $0{,}63$ & $0{,}18$ \\
+        Constante de tempo $\tau$ (ms) & $1{,}05 \pm 0{,}07$ & $1{,}089 \pm 0{,}018$ & $1{,}094 \pm 0{,}017$ & $0{,}57$ & $0{,}63$ & $0{,}18$ \\
         Capacitância $C$ ($\mu$F) & $1{,}00 \pm 0{,}06$ & $1{,}04 \pm 0{,}03$ & $1{,}04 \pm 0{,}03$ & $0{,}56$ & $0{,}63$ & $0{,}00$ \\
         $\chi^2_{\text{red}}$ & -- & $0{,}057$ & $0{,}064$ & -- & -- & -- \\
         \bottomrule
@@ -340,21 +362,24 @@ O coeficiente linear reproduz fidedignamente $\ln(\Delta V) = \ln(3{,}849) = 1{,
 \section{Discussão e Síntese Crítica}
 \vspace{-0.15cm}
 \noindent\textbf{1. Confronto entre Regressão Linear e Ajuste Exponencial:}
-Os dois métodos de ajuste apresentaram notável concordância ($Z = 0{,}33$ para o eletrolítico e $Z = 0{,}18$ para o cerâmico). O ajuste não-linear direto (Levenberg-Marquardt) minimiza resíduos na escala física natural ($\text{V}$), ajustando conjuntamente $V_{\infty}$, $\Delta V$ e $\tau$ sob variância homogênea. Já o método linear requer a translação prévia $V_C - V_{\infty}$, correlacionando a incerteza de $V_{\infty}$ aos pontos. Crucialmente, a incerteza do logaritmo $u_Y = u_{V_C}/(V_C - V_{\infty})$ diverge quando $V_C \to V_{\infty}$, tornando mandatário o uso de pesos $w_i = 1/u_Y^2$; o MMQ ordinário sem ponderação distorceria drasticamente a inclinação devido aos pontos ruidosos da cauda.
+Ambos os métodos apresentaram excelente concordância mútua ($Z = 0{,}33$ para o eletrolítico e $Z = 0{,}18$ para o cerâmico). O ajuste não-linear direto (Levenberg-Marquardt) opera na escala física natural ($\text{V}$), estimando conjuntamente $V_{\infty}$, $\Delta V$ e $\tau$. Já a regressão linear requer estimar previamente $V_{\infty}$, transferindo sua incerteza aos pontos. Como $u_Y = u_{V_C}/(V_C - V_{\infty})$ diverge na cauda ($V_C \to V_{\infty}$), a ponderação $w_i = 1/u_Y^2$ é indispensável; um MMQ ordinário sem pesos superdimensionaria os pontos ruidosos da cauda e distorceria $\tau$.
 
-\noindent\textbf{2. Efeito da Resolução Digital do Osciloscópio (Quantização de 8 bits):}
-O conversor A/D do osciloscópio Tektronix TBS~1062 opera com resolução de 8 bits em 10 divisões verticais, gerando degraus discretos de $d = 80\text{ mV}$. Embora imperceptível na curva direta de tensão, a quantização manifesta-se nos gráficos linearizados das Figuras~\ref{fig:eletrolitico}(b) e~\ref{fig:ceramico}(b): para valores baixos de $V_C - V_{\infty}$, surgem patamares horizontais paralelos de logaritmo. A imposição do limiar $V_C - V_{\infty} \ge 0{,}20\text{ V}$ removeu eficazmente os pontos com desvio de quantização superior a $40\%$, assegurando a linearidade do ajuste.
+\noindent\textbf{2. Análise de Resíduos e Avaliação do $\chi^2_{\text{red}} \ll 1$:}
+Os gráficos de resíduos das Figuras~\ref{fig:eletrolitico} e~\ref{fig:ceramico} mostram dispersão estocástica em torno de zero, perfeitamente contida na faixa de incerteza cinza, comprovando a ausência de desvios sistemáticos ou dinâmicas parasitas. Os valores de $\chi^2_{\text{red}} \approx 0{,}05$ decorrem do fato de a incerteza Tipo B fornecida pelo manual Tektronix ($u_{V_C} \approx 0{,}15\text{ V}$) representar o envelope de tolerância máxima de calibração em toda a vida útil do instrumento, enquanto o ruído aleatório ponto a ponto na bancada foi muito menor ($\sim 15\text{ mV}$).
 
-\noindent\textbf{3. Efeito da Resistência do Gerador de Funções:}
-Sem a impedância interna do gerador ($R_{\text{ger}} = 50\ \Omega$), as previsões baseadas apenas em $1000\ \Omega$ seriam $\tau_1 = 1{,}00\text{ s}$ e $\tau_2 = 1{,}00\text{ ms}$, com desvios de $+12{,}3\%$ e $+8{,}9\%$. A consideração de $R_{\text{eq}} = 1050\ \Omega$ reduz a discrepância para menos de $0{,}6\sigma$ ($Z = 0{,}58$ e $Z = 0{,}57$), ressaltando a relevância da modelagem instrumental realista.
+\noindent\textbf{3. Quantização Digital de 8 bits e Limiar de Corte:}
+O conversor A/D opera com resolução de 8 bits ($d = 80\text{ mV}$). Nas caudas das Figuras~\ref{fig:eletrolitico}(b) e~\ref{fig:ceramico}(b), essa discretização gera patamares horizontais de logaritmo. O limiar $V_C - V_{\infty} \ge 0{,}20\text{ V}$ expurgou a região onde a incerteza de quantização excedia $40\%$, garantindo regressões lineares de elevada robustez.
 
-\noindent\textbf{4. Reconstrução no Modo Scan e Simetria de Carga/Descarga:}
-A descontinuidade no modo \textit{Scan} provém da interrupção do laço de varredura na tela. A técnica de dobramento de fase validou-se pela concordância entre o trecho contínuo ($\tau = 1{,}07 \pm 0{,}11\text{ s}$) e a curva completa ($1{,}123 \pm 0{,}015\text{ s}$). Ademais, a igualdade entre as constantes de carga ($\tau_{\text{carga}} = 1{,}120\text{ s}$) e de descarga ($\tau_{\text{desc}} = 1{,}123\text{ s}$, $Z = 0{,}17$) atesta a linearidade ôhmica e a ausência de histerese dielétrica apreciável no capacitor eletrolítico.
+\noindent\textbf{4. Resistência do Gerador e Tecnologias de Capacitores:}
+A consideração de $R_{\text{ger}} = 50\ \Omega$ ($R_{\text{eq}} = 1050\ \Omega$) foi determinante: sem ela, os desvios frente aos nominais seriam de $+12{,}3\%$ e $+8{,}9\%$, caindo para $Z < 0{,}6$ após a correção. As duas montagens ilustram tecnologias dielétricas complementares: o capacitor eletrolítico utiliza filme de óxido de alumínio polarizado para obter alta capacitância ($1\text{ mF}$), mas com tolerância ampla ($\pm 20\%$); o cerâmico utiliza titanato de bário não-polarizado, com menor capacitância ($1\ \mu\text{F}$) e maior precisão ($\pm 10\%$). Ambas as capacitâncias obtidas situaram-se confortavelmente dentro das especificações de fábrica.
+
+\noindent\textbf{5. Modo Scan e Simetria de Carga e Descarga:}
+A técnica de dobramento de fase superou com sucesso a interrupção da varredura no modo \textit{Scan}. A igualdade estatística entre $\tau_{\text{desc}} = (1{,}123 \pm 0{,}015)\text{ s}$ e $\tau_{\text{carga}} = (1{,}120 \pm 0{,}012)\text{ s}$ ($Z = 0{,}17$) atesta a linearidade ôhmica estrita e a ausência de histerese apreciável.
 
 \vspace{-0.25cm}
 \section{Conclusões}
 \vspace{-0.15cm}
-O estudo experimental caracterizou com rigor a dinâmica transiente de circuitos RC nas escalas de $\sim 1\text{ s}$ e $\sim 1\text{ ms}$, confirmando a validade da equação diferencial derivada da segunda lei de Kirchhoff. As constantes de tempo determinadas foram $\tau_{\text{elet}} = (1{,}123 \pm 0{,}015)\text{ s}$ e $\tau_{\text{cer}} = (1{,}089 \pm 0{,}018)\text{ ms}$, fornecendo as capacitâncias $C_{\text{elet}} = (1{,}07 \pm 0{,}03)\text{ mF}$ e $C_{\text{cer}} = (1{,}04 \pm 0{,}03)\ \mu\text{F}$. Todos os valores estimados apresentaram discrepância normalizada $Z < 0{,}65$ frente aos parâmetros nominais do fabricante, comprovando a compatibilidade física dos resultados. O confronto metodológico evidenciou que a regressão linear ponderada é equivalente ao ajuste não-linear direto desde que se apliquem pesos estatísticos rigorosos e se exclua a região de saturação por quantização digital do osciloscópio.
+O trabalho experimental caracterizou com elevado rigor a resposta transiente de circuitos RC nas escalas de $\sim 1\text{ s}$ e $\sim 1\text{ ms}$, validando plenamente as soluções da equação diferencial baseada na lei das malhas de Kirchhoff. As constantes de tempo obtidas foram $\tau_{\text{elet}} = (1{,}123 \pm 0{,}015)\text{ s}$ e $\tau_{\text{cer}} = (1{,}089 \pm 0{,}018)\text{ ms}$, correspondendo a capacitâncias de $C_{\text{elet}} = (1{,}07 \pm 0{,}03)\text{ mF}$ e $C_{\text{cer}} = (1{,}04 \pm 0{,}03)\ \mu\text{F}$. Todos os valores apresentaram concordância com as especificações nominais dos fabricantes com desvio normalizado $Z < 0{,}65$. O confronto metodológico comprovou a equivalência prática entre o ajuste não-linear direto e a regressão linear ponderada, desde que se excluam as regiões afetadas pela quantização de 8 bits do osciloscópio.
 
 % ==================== FIM DO CORPO PRINCIPAL ====================
 \clearpage
@@ -417,9 +442,9 @@ Multiplicando ambos os membros por $e^{-t/\tau}$, obtém-se a solução geral pa
 \begin{equation}
     V_C(t) = \varepsilon_0 + \left[ V_C(t_0) - \varepsilon_0 \right] e^{-(t - t_0)/\tau}
 \end{equation}
-\noindent\textbf{Caso da Carga:} Se o capacitor estiver inicialmente descarregado em $t_0 = 0$ ($V_C(0) = V_{\text{inf}}$) e submetido à tensão superior $\varepsilon_0 = V_{\text{sup}}$:
+\noindent\textbf{Caso da Carga:} Se o capacitor estiver descarregado em $t_0 = 0$ ($V_C(0) = V_{\infty}$) e submetido à tensão superior $\varepsilon_0 = V_{\text{sup}}$:
 \begin{equation}
-    V_C(t) = V_{\text{sup}} - (V_{\text{sup}} - V_{\text{inf}}) e^{-t/\tau} = V_{\text{sup}} - \Delta V \, e^{-t/\tau}
+    V_C(t) = V_{\text{sup}} - (V_{\text{sup}} - V_{\infty}) e^{-t/\tau} = V_{\text{sup}} - \Delta V \, e^{-t/\tau}
 \end{equation}
 \noindent\textbf{Caso da Descarga:} Se o capacitor estiver plenamente carregado em $t_0 = 0$ com $V_C(0) = V_{\text{sup}}$ e a tensão da fonte comutar para $\varepsilon_0 = V_{\infty}$:
 \begin{equation}
@@ -433,7 +458,7 @@ que é exatamente o modelo expresso na Eq.~\eqref{eq:modelo_exp}.
 \subsection{Incerteza das Medições de Tensão com o Osciloscópio}
 Para cada ponto amostrado de tensão $V_C$, associam-se duas fontes de incerteza do Tipo B independentes:
 \begin{enumerate}
-    \item \textbf{Incerteza de Resolução (Digitalização):} O conversor A/D de 8 bits do Tektronix TBS~1062 distribui 200 níveis de quantização em 8 divisões verticais (25 níveis por divisão). Para a escala vertical adotada ($E = 2{,}00\text{ V/div}$), a menor divisão digital é $d = 2{,}00 / 25 = 0{,}08\text{ V}$. Assumindo distribuição de probabilidade uniforme (retangular) centrada no valor registrado:
+    \item \textbf{Incerteza de Resolução (Digitalização):} O conversor A/D de 8 bits do Tektronix TBS~1062 distribui 200 níveis de quantização em 8 divisões verticais (25 níveis por divisão). Para a escala vertical adotada ($E = 2{,}00\text{ V/div}$), a menor divisão digital é $d = 2{,}00 / 25 = 0{,}08\text{ V}$. Assumindo distribuição retangular:
     \begin{equation}
         u_{\text{leit}} = \frac{d}{2\sqrt{3}} = \frac{0{,}08\text{ V}}{2\sqrt{3}} \approx 0{,}02309\text{ V}
     \end{equation}
@@ -476,7 +501,13 @@ Para avaliar a concordância entre dois valores experimentais ou entre um valor 
 \begin{equation}
     Z = \frac{|x_1 - x_2|}{\sqrt{u_{x_1}^2 + u_{x_2}^2}}
 \end{equation}
-Valores com $Z \le 1{,}0$ indicam excelente concordância (dentro de $1\sigma$), $1{,}0 < Z \le 2{,}0$ indicam compatibilidade estatística satisfatória, e $Z > 3{,}0$ apontam para discrepâncias significativas ou erros sistemáticos não corrigidos.
+Valores com $Z \le 1{,}0$ indicam excelente concordância (dentro de $1\sigma$), $1{,}0 < Z \le 2{,}0$ indicam compatibilidade satisfatória, e $Z > 3{,}0$ apontam para discrepâncias significativas~\cite{vuolo}.
+
+\clearpage
+\section{Código Python: Funções Auxiliares Comuns (\texttt{utils\_rc.py})}\label{ap:utils}
+O script a seguir (\texttt{codigos/utils\_rc.py}) implementa a leitura dos arquivos CSV do osciloscópio, o cálculo das incertezas do Tipo B, o algoritmo não-linear de Levenberg-Marquardt, o MMQ linear ponderado e a propagação de incertezas.
+
+\lstinputlisting[style=pythonstyle, caption={Módulo auxiliar com rotinas de regressão e incertezas (\texttt{codigos/utils\_rc.py}).}]{../codigos/utils_rc.py}
 
 \clearpage
 \section{Código Python: Análise do Capacitor Eletrolítico}\label{ap:codigos}
